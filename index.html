@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FBI Crime Dataset Analytics</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="RadarChart.js"></script>
+</head>
+<body>
+
+<!-- Code snippet referred from
+        https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp -->
+
+<!--
+<h1 style="margin-top: 0.1cm; position: relative; left: 0%;">FBI Crime Dataset Visualization</h1>
+<h1 style="text-align: center" id="page_title">US Crime Statistics (Total Crimes - 1994)</h1>
+-->
+<!--<h1 style="margin-top: 0.1cm; position: relative; left: 4%;">FBI Crime Dataset Visualization-->
+<h1 style="margin-top: 0.1cm; position: relative;">FBI Crime Dataset Visualization
+    <span class="btn-group">
+        <!--<button style="position: relative; left: 342px; top: 15px;" type="button" class="btn btn-dark" id="reset_button">Reset Selection</button>-->
+        <button style="position: absolute; left: -390px; top: 890px; width: 180px;" type="button" class="btn btn-dark" id="reset_button">Reset Selection</button>
+    </span>
+</h1>
+<h1 style="text-align: center" id="page_title">US Crime Statistics (Total Crimes - 1994)</h1>
+<div id="nav-bar">
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item dropdown" style="margin-right: 0.5cm">
+            <a class="nav-link active dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false" href="#">US Crime Statistics</a>
+            <div class="dropdown-menu" id="crimetypes">
+                <a class="dropdown-item" href="#" data-metric="TotalCrimes">Total Crimes</a>
+                <a class="dropdown-item" href="#" data-metric="PropertyCrimes" >Property Crimes</a>
+                <a class="dropdown-item" href="#" data-metric="ViolentCrimes" >Violent Crimes</a>
+                <!--<a class="dropdown-item" href="#" data-metric="Robbery">Robbery</a>-->
+                <a class="dropdown-item" href="#" data-metric="Murder">Murder</a>
+                <a class="dropdown-item" href="#" data-metric="Burglary">Burglary</a>
+                <a class="dropdown-item" href="#" data-metric="Larceny">Larceny</a>
+                <a class="dropdown-item" href="#" data-metric="Rape">Rape</a>
+                <a class="dropdown-item" href="#" data-metric="AggravatedAssault">Aggravated Assault</a>
+                <a class="dropdown-item" href="#" data-metric="MotorVehicleTheft">Motor Vehicle Theft</a>
+            </div>
+        </li>
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link" href="CrimeByWeapon.html" onclick="updateNavVal('CrimeByWeapon')">Crime Trends By Weapons</a>
+        </li>
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link" href="CrimeByRace.html" onclick="updateNavVal('CrimeByRace')">Crime Trends Across Races</a>
+        </li>
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link" href="SolvedCrimeStats.html" onclick="updateNavVal('SolvedCrimeStats')">Solved Crime Statistics</a>
+        </li>
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link" href="ArrestTrendsByAge.html" onclick="updateNavVal('ArrestTrendsByAge')">Arrest Trends By Age Group</a>
+        </li>
+    </ul>
+</div>
+
+
+
+<div id="main" class="centered">
+
+    <!--&lt;!&ndash; Code snippet taken from https://www.w3schools.com/howto/howto_js_rangeslider.asp &ndash;&gt;
+    <h4 style="text-align: center; margin-top: 0.5cm;">
+        Slide to visualize crime data by year from 1994-2017
+        <div class="slidecontainer" id="slider">
+            <input type="range" min="1994" max="2017" value="1994" step="1" class="slider" id="year">
+        </div>
+    </h4>
+-->
+    <div id="tooltip-container"></div>
+    <div id="canvas-svg" class="centered">
+        <div id="metrics" align="left"></div>
+        <div id="countbox" align="left">
+            <div class="row">
+                <!-- Metric 1 -->
+                <div class="col-sm-3">
+                    <div class="chart-wrapper">
+                        <div class="chart-title">
+                            <div id="crime_type"></div>
+                        </div>
+                        <div class="chart-stage">
+                            <div id="crime_count"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Metric 1 -->
+
+            </div>
+            <!--<input type="range" min="1994" max="2014" value="1994" step="1" class="slider" id="year">-->
+        </div>
+        <div id="map" class="centered" style="margin-left: 100px; margin-top: 30px;"></div>
+        <div id="barchart" class="centered">
+            <h4 style="text-align: center" id="barchart_tile">Total Crimes Trends in United States</h4>
+        </div>
+        <div id="radarchart">
+            <h4 style="text-align: center; margin-right: 120px;" id="radarchart_title">Crime Distribution in United States - 1994</h4>
+        </div>
+    </div>
+</div>
+<script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="crimeStats.js"></script>
+</body>
+</html>

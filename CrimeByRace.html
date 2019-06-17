@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FBI Crime Dataset Analytics</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="line.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<!-- Code snippet referred from
+        https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp -->
+
+<h1 style="margin-top: 0.1cm; position: relative; left: 0%;">FBI Crime Dataset Visualization</h1>
+<h1 style="text-align: center" id="page_title">Crime Trends Across Races</h1>
+
+
+<div id="nav-bar">
+    <ul class="nav nav-pills justify-content-center">
+        <!--<li class="nav-item dropdown">-->
+            <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
+               <!--aria-expanded="false" href="index.html">US Crime Statistics</a>-->
+            <!--<div class="dropdown-menu" id="crimetypes">-->
+                <!--<a class="dropdown-item" href="#" data-metric="TotalCrimes">Total Crimes</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="PropertyCrimes">Property Crimes</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="ViolentCrimes">Violent Crimes</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="Robbery">Robbery</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="Murder">Murder</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="Burglary">Burglary</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="Larceny">Larceny</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="Rape">Rape</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="AggravatedAssault">Aggravated Assault</a>-->
+                <!--<a class="dropdown-item" href="#" data-metric="MotorVehicleTheft">Motor Vehicle Theft</a>-->
+            <!--</div>-->
+        <!--</li>-->
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link" href="index.html">US Crime Statistics</a>
+        </li>
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link" href="CrimeByWeapon.html">Crime Trends By Weapons</a>
+        </li>
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link active" href="CrimeByRace.html">Crime Trends Across Races</a>
+        </li>
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link" href="SolvedCrimeStats.html">Solved Crime Statistics</a>
+        </li>
+        <li class="nav-item" style="margin-right: 0.5cm">
+            <a class="nav-link" href="ArrestTrendsByAge.html">Arrest Trends By Age Group</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="graphWrapper" id="graphLine"></div>
+
+<!--
+<div id = "main" class = "centered" style="text-align: center;">
+    <div id="canvas-svg"  class = "centered" style="text-align: center;">
+        <div id = "map" class = "centered" style="text-align: center;"></div>
+    </div>
+</div>
+-->
+
+<script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="crimeByRace.js"></script>
+</body>
+</html>
